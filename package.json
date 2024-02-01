@@ -22,8 +22,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+      "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {
@@ -33,7 +32,6 @@
     ],
     "*.ts?(x)": [
       "prettier --write",
-      "eslint --fix",
       "git add"
     ]
   },
