@@ -1,6 +1,7 @@
-import GanttComponent, { GanttProps, GanttRef } from './Gantt'
-import { Gantt } from './types'
+import GanttComponent from './Gantt'
+import { value Gantt } from './types'
 
-export { GanttProps, Gantt, GanttRef }
-export * from "./locales";
+export { Gantt }
+export type { GanttProps, GanttRef, GanttLocale } from './Gantt'
+export * from './locales'
 export default GanttComponent
