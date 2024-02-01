@@ -20,16 +20,6 @@
     "start": "cross-env NODE_ENV=development avenger build --watch",
     "start:website": "dumi dev"
   },
-  "lint-staged": {
-    "*.{js,json,md,tsx,ts}": [
-      "prettier --write",
-      "git add"
-    ],
-    "*.ts?(x)": [
-      "prettier --write",
-      "git add"
-    ]
-  },
   "config": {
     "commitizen": {
       "path": "node_modules/cz-customizable"
