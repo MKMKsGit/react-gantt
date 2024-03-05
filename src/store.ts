@@ -677,7 +677,9 @@ class GanttStore {
       const translateX = valid ? startAmp / pxUnitAmp : 0
       const translateY = baseTop + index * topStep
       const { _parent } = item
-      const record = { ...item.record, disabled: this.disabled }
+      const itemDisabled = this.disabled || item.record.disabled
+
+      const record = { ...item.record, disabled: itemDisabled }
       const bar: Gantt.Bar = {
         key: item.key,
         task: item,

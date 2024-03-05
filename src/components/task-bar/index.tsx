@@ -95,7 +95,7 @@ const TaskBar: React.FC<TaskBarProps> = ({ data }) => {
     },
     [store]
   )
-  const allowDrag = showDragBar && !loading
+  const allowDrag = showDragBar && !loading && !disabled
 
   const handleClick = useCallback(
     (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
