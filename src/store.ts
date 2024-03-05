@@ -63,12 +63,14 @@ class GanttStore {
     disabled = false,
     customSights,
     locale,
+    defaultDate = new Date(),
     hideTable = false,
   }: {
     rowHeight: number
     disabled: boolean
     customSights: Gantt.SightConfig[]
     locale: GanttLocale
+    defaultDate?: Date
     hideTable?: boolean
   }) {
     this.width = 1320
@@ -88,6 +90,7 @@ class GanttStore {
     this.disabled = disabled
     this.locale = locale
     this.hideTable = hideTable
+    this.today = dayjs(defaultDate)
   }
 
   locale = {...defaultLocale}
@@ -136,6 +139,8 @@ class GanttStore {
 
   @observable hideTable = false
 
+  @observable today: Dayjs = dayjs()
+
   viewTypeList = getViewTypeList(this.locale)
 
   gestureKeyPress = false
@@ -161,7 +166,7 @@ class GanttStore {
   isRestDay = isRestDay
 
   getStartDate() {
-    return dayjs().subtract(10, 'day').toString()
+    return this.today.subtract(10, 'day').toString()
   }
 
   setIsRestDay(function_: (date: string) => boolean) {
@@ -275,7 +280,7 @@ class GanttStore {
   }
 
   @computed get todayTranslateX() {
-    return dayjs().startOf('day').valueOf() / this.pxUnitAmp
+    return this.today.startOf('day').valueOf() / this.pxUnitAmp
   }
 
   @computed get scrollBarWidth() {
