@@ -199,7 +199,9 @@ const TaskBar: React.FC<TaskBarProps> = ({ data }) => {
           </>
         )}
         <DragResize
-          className={`${prefixClsTaskBar}-bar`}
+          className={classNames(`${prefixClsTaskBar}-bar`, {
+            [`${prefixClsTaskBar}-bar-disabled`]: disabled,
+          })}
           onResize={handleResize}
           onResizeEnd={handleMoveEnd}
           defaultSize={{
