@@ -63,11 +63,13 @@ class GanttStore {
     disabled = false,
     customSights,
     locale,
+    hideTable = false,
   }: {
     rowHeight: number
     disabled: boolean
     customSights: Gantt.SightConfig[]
     locale: GanttLocale
+    hideTable?: boolean
   }) {
     this.width = 1320
     this.height = 418
@@ -85,6 +87,7 @@ class GanttStore {
     this.rowHeight = rowHeight
     this.disabled = disabled
     this.locale = locale
+    this.hideTable = hideTable
   }
 
   locale = {...defaultLocale}
@@ -130,6 +133,8 @@ class GanttStore {
   @observable draggingType: Gantt.MoveType | null = null
 
   @observable disabled = false
+
+  @observable hideTable = false
 
   viewTypeList = getViewTypeList(this.locale)
 
@@ -240,7 +245,7 @@ class GanttStore {
   }
 
   @action initWidth() {
-    this.tableWidth = this.totalColumnWidth || 250
+    this.tableWidth = this.hideTable ? 0 : this.totalColumnWidth || 250
     this.viewWidth = this.width - this.tableWidth
     // 图表宽度不能小于 200
     if (this.viewWidth < 200) {
