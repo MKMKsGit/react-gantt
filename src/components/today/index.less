@@ -1,21 +1,16 @@
 @import '../../style/themes/index';
+@time-axis-prefix-cls: ~'@{gantt-prefix}-time-axis';
 
-.@{gantt-prefix}-today {
-  position: absolute;
-  top: 0;
-  background: #096dd9;
-  width: 1px;
-  height: 1px;
-  text-align: center;
-  line-height: 1px;
-  border-radius: 50%;
-  font-size: 12px;
-  color: #ffffff;
-  pointer-events: none;
+.@{time-axis-prefix-cls} {
+  &-today {
+    background-color: #d90909;
+    border-radius: 50%;
+    color: #fff;
+  }
 }
 
 .@{gantt-prefix}-today_line {
   width: 1px;
-  background: #096dd9;
+  background: #d90909;
   margin-left: 15px;
 }
