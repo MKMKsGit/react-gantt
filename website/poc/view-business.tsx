@@ -14,22 +14,22 @@ const App = () => {
   const data3 = createData(5, { allDisabled: false, startDate: defaultDate3 })
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', textAlign: 'center' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
         Class 1
-        <div style={{ width: '80%', height: 200 }}>
+        <div style={{ width: '100%', height: 200 }}>
           <RcGantt<Data> {...defaultProps} data={data1} defaultDate={defaultDate1} disabled hideTable />
         </div>
       </div>
       <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
         Class 2
-        <div style={{ width: '80%', height: 200 }}>
+        <div style={{ width: '100%', height: 200 }}>
           <RcGantt<Data> {...defaultProps} data={data2} defaultDate={defaultDate2} disabled hideTable />
         </div>
       </div>
       <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
         Class 3
-        <div style={{ width: '80%', height: 200 }}>
+        <div style={{ width: '100%', height: 200 }}>
           <RcGantt<Data> {...defaultProps} data={data3} defaultDate={defaultDate3} disabled hideTable />
         </div>
       </div>
