@@ -5,7 +5,7 @@ hero:
   desc: Gantt Component
   actions:
     - text: Quick Start →
-      link: /component
+      link: /en-US/component
 
 footer: Open-source MIT Licensed | Copyright © 2021<br />
 ---
@@ -44,4 +44,4 @@ return (
 
 ## Feedback
 
-Please visit [Github](https://github.com/ahwgs/react-gantt/issues) 
+Please visit [Github](https://github.com/ahwgs/react-gantt/issues)
