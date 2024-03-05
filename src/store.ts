@@ -11,7 +11,7 @@ import throttle from 'lodash/throttle'
 import { action, computed, observable, runInAction, toJS } from 'mobx'
 import React, { createRef } from 'react'
 import { HEADER_HEIGHT, TOP_PADDING } from './constants'
-import { GanttProps as GanttProperties, GanttLocale, defaultLocale } from './Gantt'
+import { defaultLocale, GanttLocale, GanttProps as GanttProperties } from './Gantt'
 import { Gantt } from './types'
 import { flattenDeep, transverseData } from './utils'
 
@@ -93,7 +93,7 @@ class GanttStore {
     this.today = dayjs(defaultDate)
   }
 
-  locale = {...defaultLocale}
+  locale = { ...defaultLocale }
 
   _wheelTimer: number | undefined
 
@@ -206,6 +206,7 @@ class GanttStore {
   setColumns(columns: Gantt.Column[]) {
     this.columns = columns
   }
+
   @action
   setDependencies(dependencies: Gantt.Dependence[]) {
     this.dependencies = dependencies
@@ -226,10 +227,12 @@ class GanttStore {
     this.scrolling = true
     this.setTranslateX(translateX)
   }
+
   @action
   handlePanEnd() {
     this.scrolling = false
   }
+
   @action syncSize(size: { width?: number; height?: number }) {
     if (!size.height || !size.width) return
 
@@ -258,10 +261,12 @@ class GanttStore {
       this.tableWidth = this.width - this.viewWidth
     }
   }
+
   @action
   setTranslateX(translateX: number) {
     this.translateX = Math.max(translateX, 0)
   }
+
   @action switchSight(type: Gantt.Sight) {
     const target = find(this.viewTypeList, { type })
     if (target) {
@@ -514,12 +519,7 @@ class GanttStore {
     }
     const getMinorKey = (date: Dayjs) => {
       if (this.sightConfig.type === 'halfYear')
-        return (
-          date.format(format) +
-          (fstHalfYear.has(date.month())
-            ? this.locale.firstHalf
-            : this.locale.secondHalf)
-        )
+        return date.format(format) + (fstHalfYear.has(date.month()) ? this.locale.firstHalf : this.locale.secondHalf)
 
       return date.format(format)
     }
@@ -640,8 +640,9 @@ class GanttStore {
     // 最小宽度
     const minStamp = 11 * pxUnitAmp
     // TODO 去除高度读取
-    const height = 8
-    const baseTop = TOP_PADDING + this.rowHeight / 2 - height / 2
+    const minimumHeight = 8
+    //TODO: change baseTop by rowAlign -> rowAlign = 'center' | 'top' | 'bottom'
+    const baseTop = TOP_PADDING + (this.rowHeight - minimumHeight) / 2
     const topStep = this.rowHeight
 
     const dateTextFormat = (startX: number) => dayjs(startX * pxUnitAmp).format('YYYY-MM-DD')
@@ -825,9 +826,11 @@ class GanttStore {
     barInfo.translateX = Math.max(x, 0)
     barInfo.stepGesture = 'moving'
   }
+
   getMovedDay(ms: number): number {
     return Math.round(ms / ONE_DAY_MS)
   }
+
   /** 更新时间 */
   @action
   async updateTaskDate(
